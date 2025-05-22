@@ -8,7 +8,7 @@ const models = [
   { name: 'Claude 3 Haiku', value: 'anthropic/claude-3-haiku' },
 ];
 
-const OPENROUTER_API_KEY = "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"; // ⚠️ Exposed in frontend
+const OPENROUTER_API_KEY = "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"; // ⚠️ Exposed in frontend
 
 function App() {
   const [code, setCode] = useState('');
