@@ -8,8 +8,7 @@ const models = [
   { name: 'Claude 3 Haiku', value: 'anthropic/claude-3-haiku' },
 ];
 
-const OPENROUTER_API_KEY = "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";
-
+const OPENROUTER_API_KEY = "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"; // ⚠️ Exposed in frontend
 
 function App() {
   const [code, setCode] = useState('');
@@ -55,21 +54,21 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-400 font-sans  font-semibold  p-6">
-      <div className="max-w-4xl mx-auto bg-gray-500 p-8 rounded-xl shadow-lg">
-        <h1 className="text-3xl font-extrabold mb-6 text-center text-gray-900">🧠 AI Code Reviewer</h1>
+    <div className="min-h-screen bg-gray-400 p-6">
+      <div className="max-w-4xl mx-auto bg-gray-500 p-6 rounded-xl shadow">
+        <h1 className="text-3xl font-bold mb-4 text-center">🧠 AI Code Reviewer</h1>
 
         <textarea
-          className="w-full p-4 border bg-gray-300 rounded mb-6 font-mono focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out"
+          className="w-full p-4 border bg-gray-300 rounded mb-4 font-mono"
           rows={10}
           placeholder="Paste your code here..."
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="flex gap-4 mb-4">
           <select
-            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out"
+            className="p-2 border rounded"
             value={model}
             onChange={(e) => setModel(e.target.value)}
           >
@@ -79,25 +78,27 @@ function App() {
           </select>
 
           <button
-            className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 active:bg-blue-800 disabled:bg-blue-400 transition duration-300 ease-in-out"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
             onClick={handleReview}
             disabled={loading}
           >
             {loading ? 'Reviewing...' : 'Review Code'}
           </button>
           <button
-            className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 active:bg-blue-800 disabled:bg-blue-400 transition duration-300 ease-in-out"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
             onClick={() => {
               setCode('');
               setReview('');
+              setModel(models[0].value);
             }}
+            
           >
             Clear
           </button>
         </div>
 
-        <h2 className="text-xl font-semibold mb-3 text-gray-800">Review:</h2>
-        <pre className="bg-gray-100 p-6 rounded whitespace-pre-wrap border border-gray-300">{review}</pre>
+        <h2 className="text-xl font-semibold mb-2">Review:</h2>
+        <pre className="bg-gray-100 p-4 rounded whitespace-pre-wrap">{review}</pre>
       </div>
     </div>
   );
